@@ -14,9 +14,8 @@ object harvest_second {
     /// Best Fruit gatherer overall/////
     val date_fruit = harvestlist.map(x => (x(0),x(1),x(2),x(3),((prices.getOrElse((x(2),x(1)),0.0)))))
     val date_fruit1 = date_fruit.map(x=> (x._1,x._2.dropRight(3),x._3,(x._4.toDouble * x._5.toString.toDouble)))
-    val date_fruit2 = date_fruit1.groupBy(v=> (v._2,v._3))
+    val date_fruit2 = date_fruit1.groupBy(v=> (v._3))
     val date_fruit3 = date_fruit2.view.mapValues(v=> (v.map(_._4).sum)).toMap.maxBy(x=> x._2)
-
     println("Best fruit over all " + date_fruit3)
 
     //////////////////Best Fruit Gatherer Month wise///////////
